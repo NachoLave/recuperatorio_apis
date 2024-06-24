@@ -16,7 +16,7 @@ public class ContactFormService implements IContactFormService{
 
     @Override
     public FormContactEntity saveContactForm(FromContactDTO contactForm) {
-        log.info(contactForm.toString());
+        
         
         FormContactEntity formContact = FormContactEntity.builder()
         .descripcion(contactForm.getDescription())
