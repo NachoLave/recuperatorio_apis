@@ -1,0 +1,1 @@
+print("ingreso de datos");
