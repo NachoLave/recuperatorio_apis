@@ -62,14 +62,14 @@ public class ExampleController {
     private IContactFormService contactFormService;
 
     @PostMapping("/submit")
-    public ResponseEntity submit (@RequestBody FromContactDTO formContactDTO) throws Exception {
+    public ResponseEntity<FormContactEntity> submit (@RequestBody FromContactDTO formContactDTO) throws Exception {
         log.info(formContactDTO.toString());
         FormContactEntity result = contactFormService.saveContactForm(formContactDTO);
-        
         return ResponseEntity.ok(result);
         
     }
 
+   
 
 
 
