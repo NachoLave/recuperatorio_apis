@@ -1,5 +1,6 @@
 package com.uade.tpo.demo.service.contactFormService;
 
+import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -11,6 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.uade.tpo.demo.entity.FormContactEntity;
 import com.uade.tpo.demo.entity.dto.FromContactDTO;
+import com.uade.tpo.demo.repository.cloudinary.CloudinaryRepository;
 import com.uade.tpo.demo.repository.db.IContactForm;
 
 import lombok.extern.slf4j.Slf4j;
@@ -20,11 +22,20 @@ public class ContactFormService implements IContactFormService{
      @Autowired
     private IContactForm contactFormRepository;
 
+    @Autowired
+    private CloudinaryRepository cloudinaryRepository;
+
     @Override
     public FormContactEntity saveContactForm( FromContactDTO contactForm) {
-        List<String> photosUrl = null;
+        
+        List<String> photosUrl = new LinkedList<>();
         if (!contactForm.getPhotos().isEmpty()){
-            photosUrl = contactForm.getPhotos().stream().map(this::ConfigPhotosUrls).collect(Collectors.toList());
+            
+            for( MultipartFile foto :contactForm.getPhotos()){
+                String url=cloudinaryRepository.savePhoto(foto.getName(), foto);
+                photosUrl.add(url);
+            };
+//           photosUrl = contactForm.getPhotos().stream().map(this::ConfigPhotosUrls).collect(Collectors.toList());
 
         }
         
@@ -40,7 +51,7 @@ public class ContactFormService implements IContactFormService{
         return formContact;
     }
 
-    private String ConfigPhotosUrls(MultipartFile photo){
-        return "http://example.com/photos/" + photo.getOriginalFilename();
-    }
+    //private String ConfigPhotosUrls(MultipartFile photo){
+      //  return "http://example.com/photos/" + photo.getOriginalFilename();
+    //}
 }
