@@ -22,6 +22,8 @@ import java.util.Optional;
 @Slf4j
 @RestController
 @Controller
+
+
 public class ExampleController {
 
     @Autowired
@@ -70,15 +72,15 @@ public class ExampleController {
     }
 
     
-    @PostMapping(value = "/submit2", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public ResponseEntity<FormContactEntity> submit2 (@RequestPart FromContactDTO formContactDTO , @RequestPart("images") List<MultipartFile> imagenes) throws Exception {
+    @PostMapping(value = "/submit2", consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<String> submit2 (@RequestPart FromContactDTO formContactDTO , @RequestPart("images") List<MultipartFile> imagenes) throws Exception {
         formContactDTO.getPhotos().addAll(imagenes);
         //FormContactEntity result = contactFormService.saveContactForm(formContactDTO);
         contactFormService.saveContactForm(formContactDTO);
-        return ResponseEntity.ok(null);
+        return ResponseEntity.ok("Mensaje enviado con exito");
         
     }
-
+    
    
 
 
