@@ -7,6 +7,6 @@ import org.springframework.web.multipart.MultipartFile;
 import com.uade.tpo.demo.entity.dto.InformProblemDTO;
 
 public interface InformProblemInterface {
-    void guardarInforme(InformProblemDTO informProblemDTO,List<MultipartFile> imagenes);
+    void guardarinforme(InformProblemDTO informProblemDTO,List<MultipartFile> imagenes);
 }
 

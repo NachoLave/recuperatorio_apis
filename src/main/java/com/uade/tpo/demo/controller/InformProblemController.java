@@ -1,5 +1,8 @@
 package com.uade.tpo.demo.controller;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -23,15 +26,16 @@ public class InformProblemController {
     }
 
     @PostMapping(value = "/Informe_de_problema", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public ResponseEntity<String> guardarInforme(@RequestPart("images") List<MultipartFile> imagenes,
-                                                @RequestPart String name,
-                                                @RequestPart String problem,
-                                                @RequestPart String description) {
+    public ResponseEntity<String> guardarInforme(@RequestPart("Imagenes") List<MultipartFile> Imagenes,
+                                                @RequestPart String NombreYApellido,
+                                                @RequestPart String Problema,
+                                                @RequestPart String Description) {
 
-        InformProblemDTO pepe = InformProblemDTO.builder()
-                .nombreApellido(name)
-                .descripcionProblema(description)
-                .problematica(problem).build();
+        InformProblemDTO informe = InformProblemDTO.builder()
+                .nombreApellido(NombreYApellido)
+                .problematica(Problema)
+                .descripcionProblema(Description)
+                .build();
 
         try {
 
@@ -39,7 +43,7 @@ public class InformProblemController {
             //  String url = GuardarFoto(foto);
 
             //informProblemDTO.getFotos().add(url);}
-            informProblemService.guardarContacto(pepe, imagenes);
+            informProblemService.guardarinforme(informe, Imagenes);
             return ResponseEntity.ok("Informe registrado exitosamente");
         } catch (Exception e) {
             return ResponseEntity.internalServerError().build();

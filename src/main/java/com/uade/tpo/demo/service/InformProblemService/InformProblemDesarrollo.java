@@ -21,7 +21,7 @@ public class InformProblemDesarrollo implements InformProblemInterface{
     @Autowired
     private CloudinaryRepository repository;
     @Override
-    public void guardarInforme(InformProblemDTO informProblemDTO, List<MultipartFile> imagenes) {
+    public void guardarinforme(InformProblemDTO informProblemDTO, List<MultipartFile> imagenes) {
         List<String> photourl = imagenes.stream()
                 .map(img -> repository.savePhoto(img.getName(), img))
                 .toList();
