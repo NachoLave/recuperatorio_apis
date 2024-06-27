@@ -19,7 +19,7 @@ public class InformProblemDesarrollo implements InformProblemInterface{
         InformProblemEntity informproblem = new InformProblemEntity();
         informproblem.setNombreApellido(informProblemDTO.getNombreApellido());
         informproblem.setProblematica(informProblemDTO.getProblematica());
-        informproblem.setFotos(informProblemDTO.getFotos());
+        //informproblem.setFotos(informProblemDTO.getFotos());
         informproblem.setDescripcionProblema(informProblemDTO.getDescripcionProblema());
         
         informProblemRepository.save(informproblem);

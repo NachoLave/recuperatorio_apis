@@ -8,7 +8,7 @@ import lombok.Data;
 public class InformProblemDTO {
     private String nombreApellido;
     private String problematica;
-    private List<String> fotos;
+    
     private String descripcionProblema;
     
 
