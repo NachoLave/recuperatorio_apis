@@ -25,7 +25,7 @@ public class InformProblemController {
         this.informProblemService = informContactService;
     }
 
-    @PostMapping(value = "/Informe_de_problema", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    @PostMapping(value = "/submit", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<String> guardarInforme(@RequestPart("Imagenes") List<MultipartFile> Imagenes,
                                                 @RequestPart String NombreYApellido,
                                                 @RequestPart String Problema,
